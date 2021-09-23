@@ -116,7 +116,7 @@ NIVolume(header::NIfTI1Header, extensions::Vector{NIfTIExtension}, raw::R) where
     niupdate(new(header, extensions, raw))
 
 NIVolume(header::NIfTI1Header, extensions::Vector{NIfTIExtension}, raw::AbstractArray{T,N}) where {T<:Number,N} =
-    NIVolume{typeof(raw),N,typeof(raw)}(header, extensions, raw)
+    NIVolume{T,N,typeof(raw)}(header, extensions, raw)
 NIVolume(header::NIfTI1Header, raw::AbstractArray{T,N}) where {T<:Number,N} =
     NIVolume{typeof(one(T)*1f0+1f0),N,typeof(raw)}(header, NIfTIExtension[], raw)
 NIVolume(header::NIfTI1Header, extensions::Vector{NIfTIExtension}, raw::AbstractArray{Bool,N}) where {N} =
